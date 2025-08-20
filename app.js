@@ -517,3 +517,28 @@ window.BaisaGlobal = {
         };
     }
 };
+// Work Process Animation
+function animateProcessSteps() {
+    const processSteps = document.querySelectorAll('.process-step');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animate');
+                }, index * 200);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    processSteps.forEach(step => {
+        observer.observe(step);
+    });
+}
+
+// Initialize animations when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    animateProcessSteps();
+});
